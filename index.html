@@ -71,6 +71,12 @@
       .nowrap { white-space: normal; } /* allow wrap on small screens */
       .wrap { padding: 18px; }
     }
+      .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
+      .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
+    .soldout { display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:28px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
+    .soldout-badge { display:inline-block; padding:6px 12px; border-radius:999px; font-weight:800; letter-spacing:.3px; color:#0b1026; background: linear-gradient(92deg, var(--brand), var(--brand-2)); }
+    .soldout-title { font-size:22px; font-weight:800; margin:4px 0 0; }
+    .soldout-msg { color: var(--muted); margin:0; }
   </style>
 </head>
 <body>
@@ -112,10 +118,12 @@
 
     <div class="grid">
       <section id="register" class="card">
-        <h2 class="section-title">Register</h2>
-        <p class="muted">Fill out the form below. (configure this in Google Forms).</p>
-        <iframe id="formFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfq4wCotT0gIrXr0PaApdAfvav6190pCPXYg-DXxy0A1-Nhcw/viewform?embedded=true" allow="clipboard-write;"></iframe>
-        <p class="admin-note">If the form doesn’t appear, <a id="formLink" href="https://forms.gle/9rZ6zDjDvxBtMFMh7" target="_blank" rel="noreferrer noopener">open it in a new tab</a>.</p>
+        <h2 class="section-title">Registration</h2>
+        <div class="soldout">
+          <span class="soldout-badge">Sold out</span>
+          <p class="soldout-title">All spots filled — Registration closed</p>
+          <p class="soldout-msg">DM us directly for any last‑minute openings or cancellations.</p>
+        </div>
       </section>
     </div>
 
