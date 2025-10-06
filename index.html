@@ -18,25 +18,13 @@
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
-    body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-      color: #fff; background: linear-gradient(120deg, #0b1026, #0f172a 40%, #0b1026);
-    }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; color: #fff; background: linear-gradient(120deg, #0b1026, #0f172a 40%, #0b1026); }
     a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    header {
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      backdrop-filter: blur(6px);
-      padding: 16px 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
+    header { border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); backdrop-filter: blur(6px); padding: 16px 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .brand { font-weight: 800; letter-spacing: 0.4px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-    .brand .logo {
-      width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 80deg, var(--brand), var(--brand-2));
-      box-shadow: 0 0 22px rgba(34, 211, 238, 0.35);
-    }
-    nav a { margin-left: 18px; font-weight: 600; color: #e2e8f0; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 80deg, var(--brand), var(--brand-2)); box-shadow: 0 0 22px rgba(34, 211, 238, 0.35); }
 
     /* HERO */
     .hero { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; padding: 36px 0 8px; }
@@ -44,6 +32,7 @@
     .gradient { background: linear-gradient(92deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nowrap { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .lead { color: var(--muted); font-size: 18px; }
+    .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
 
     /* Cards */
     .card { background: rgba(17, 24, 39, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.35); }
@@ -63,20 +52,19 @@
     .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     iframe { width: 100%; min-height: 720px; border: 0; border-radius: 14px; background: #0b1026; }
 
+    /* Payment UI */
+    .paygrid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin: 10px 0 18px; }
+    .subcard { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; background: rgba(255,255,255,0.03); }
+    .subcard h3 { margin: 0 0 6px; font-size: 16px; }
+    .codebox { display:inline-block; padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    .paybtn { display:inline-block; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer; background:linear-gradient(92deg,var(--brand),var(--brand-2)); color:#0b1026; text-decoration:none; }
+    .copybtn { display:inline-block; padding:8px 12px; margin-left:8px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e2e8f0; cursor:pointer; }
+
     footer { color: var(--muted); font-size: 13px; margin: 22px 0 10px; text-align: center; }
     .small { font-size: 12px; }
     .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 2px 6px; border-radius: 6px; }
 
-    @media (max-width: 900px) {
-      .nowrap { white-space: normal; } /* allow wrap on small screens */
-      .wrap { padding: 18px; }
-    }
-      .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
-      .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
-    .soldout { display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:28px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
-    .soldout-badge { display:inline-block; padding:6px 12px; border-radius:999px; font-weight:800; letter-spacing:.3px; color:#0b1026; background: linear-gradient(92deg, var(--brand), var(--brand-2)); }
-    .soldout-title { font-size:22px; font-weight:800; margin:4px 0 0; }
-    .soldout-msg { color: var(--muted); margin:0; }
+    @media (max-width: 900px) { .nowrap { white-space: normal; } .wrap { padding: 18px; } }
   </style>
 </head>
 <body>
@@ -95,7 +83,7 @@
         <div class="details">
           <!-- Date/time -->
           <div class="card">
-            <div class="chip">📅 <strong id="ws-date">September 28, Sunday<br>13:30 – 15:00</strong></div>
+            <div class="chip">📅 <strong id="ws-date">October 26, Sunday<br>16:00 – 18:00</strong></div>
             <p class="muted small">Mark your calendar for the workshop date and time.</p>
           </div>
           <!-- Location -->
@@ -103,7 +91,12 @@
             <div class="chip">📍 <strong id="ws-location">Klosterstraße 44<br>10179 Berlin</strong></div>
             <p class="muted small">This is the exact studio address for the workshop.</p>
           </div>
-          <!-- What you'll learn moved here at same level -->
+          <!-- Price -->
+          <div class="card">
+            <div class="chip">💶 <strong id="ws-price">Price: €10</strong></div>
+            <p class="muted small">Pay via Revolut or PayPal (details below).</p>
+          </div>
+          <!-- What you'll learn -->
           <div class="card learn">
             <h3>What you’ll learn</h3>
             <ul>
@@ -118,12 +111,32 @@
 
     <div class="grid">
       <section id="register" class="card">
-        <h2 class="section-title">Registration</h2>
-        <div class="soldout">
-          <span class="soldout-badge">Sold out</span>
-          <p class="soldout-title">All spots filled — Registration closed</p>
-          <p class="soldout-msg">DM us directly on Instagram: <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> or <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a> for any last‑minute openings or cancellations.</p>
+        <h2 class="section-title">Registration <span class="open-badge">Open</span></h2>
+        <p class="muted">To confirm your spot, please send <strong>€10</strong> using one of the methods below, then submit the form. Questions? DM us on Instagram: <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> or <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a>.</p>
+
+        <div class="paygrid">
+          <div class="subcard">
+            <h3>Pay via Revolut</h3>
+            <p class="muted">Send <strong>€10</strong> to handle <span class="codebox" id="revTag">@angelibrxy</span> and add note: <em>“Your Name – Oct 26 Dance”</em>.</p>
+            <p>
+              <a class="paybtn" href="https://revolut.me/angelibrxy" target="_blank" rel="noopener noreferrer">Open Revolut</a>
+              <button class="copybtn" data-copy="@angelibrxy">Copy handle</button>
+            </p>
+          </div>
+          <div class="subcard">
+            <h3>Pay via PayPal</h3>
+            <p class="muted">Send <strong>€10</strong> to <span class="codebox" id="ppEmail">app@tradenexs.com</span>. Include note: <em>“Your Name – Oct 26 Dance”</em>.</p>
+            <p>
+              <a class="paybtn" href="https://www.paypal.com/myaccount/transfer/homepage/pay" target="_blank" rel="noopener noreferrer">Open PayPal</a>
+              <button class="copybtn" data-copy="app@tradenexs.com">Copy email</button>
+            </p>
+          </div>
         </div>
+
+        <p class="muted small">After payment, complete the registration form below. If your form includes a question like <em>“Have you paid?”</em>, selecting <strong>Yes</strong> will trigger a confirmation email.</p>
+
+        <iframe id="formFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfq4wCotT0gIrXr0PaApdAfvav6190pCPXYg-DXxy0A1-Nhcw/viewform?embedded=true" allow="clipboard-write;"></iframe>
+        <p class="admin-note">If the form doesn’t appear, <a id="formLink" href="https://forms.gle/9rZ6zDjDvxBtMFMh7" target="_blank" rel="noreferrer noopener">open it in a new tab</a>.</p>
       </section>
     </div>
 
@@ -146,6 +159,17 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // copy-to-clipboard for payment fields
+    document.querySelectorAll('.copybtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(() => {
+          const prev = btn.textContent; btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = prev, 1200);
+        });
+      });
+    });
   </script>
 </body>
 </html>
