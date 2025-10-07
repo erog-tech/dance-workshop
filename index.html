@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f172a;        /* slate-900 */
-      --card: #111827;      /* gray-900 */
-      --muted: #94a3b8;     /* slate-400 */
-      --brand: #22d3ee;     /* cyan-400 */
-      --brand-2: #a78bfa;   /* violet-400 */
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --brand: #22d3ee;
+      --brand-2: #a78bfa;
       --ring: #22d3ee;
     }
     * { box-sizing: border-box; }
@@ -24,7 +24,7 @@
     .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
     header { border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); backdrop-filter: blur(6px); padding: 16px 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .brand { font-weight: 800; letter-spacing: 0.4px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 80deg, var(--brand), var(--brand-2)); box-shadow: 0 0 22px rgba(34, 211, 238, 0.35); }
+    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 80deg, var(--brand), var(--brand-2)); box-shadow: 0 0 22px rgba(34,211,238,.35); }
 
     /* HERO */
     .hero { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; padding: 36px 0 8px; }
@@ -35,7 +35,7 @@
     .byline { color: #cbd5e1; margin: 6px 0 0; font-weight: 600; letter-spacing: .2px; }
 
     /* Cards */
-    .card { background: rgba(17, 24, 39, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.35); }
+    .card { background: rgba(17,24,39,.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
 
     /* Details grid */
     .details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
@@ -47,6 +47,42 @@
     .learn { align-items: stretch !important; text-align: left !important; }
     .learn h3 { margin: 0 0 8px; font-size: 16px; color: #e2e8f0; }
     .learn ul { margin: 0; padding-left: 18px; line-height: 1.7; color: var(--muted); }
+
+    /* ABOUT section */
+    .about { margin-top: 18px; }
+    .about h2 { margin: 0 0 10px; font-size: 24px; }
+    .about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .about-card { display:flex; gap:20px; align-items:flex-start; }
+    .photo { position: relative; flex: 0 0 auto; }
+    .portrait {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;       /* keep circular; change to 16px for rounded-square */
+      object-fit: cover;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(#111827, #111827) padding-box,
+        conic-gradient(from 80deg, var(--brand), var(--brand-2)) border-box;
+      box-shadow: 0 10px 20px rgba(0,0,0,.35);
+      display: block;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--brand), var(--brand-2));
+      box-shadow: 0 10px 20px rgba(0,0,0,.35);
+      display: none; /* shown only if image fails to load */
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #0b1026;
+      letter-spacing: .5px;
+    }
+    .bio h3 { margin: 0 0 6px; font-size: 18px; }
+    .bio p { margin: 0 0 10px; color: var(--muted); line-height: 1.7; }
+    .bio .links a { font-weight: 700; }
 
     /* Register section full-width */
     .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -60,11 +96,22 @@
     .paybtn { display:inline-block; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer; background:linear-gradient(92deg,var(--brand),var(--brand-2)); color:#0b1026; text-decoration:none; }
     .copybtn { display:inline-block; padding:8px 12px; margin-left:8px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e2e8f0; cursor:pointer; }
 
+    /* QR images – bigger and crisp */
+    .qrwrap { display:flex; align-items:flex-start; gap:16px; margin-top:12px; flex-wrap:wrap; }
+    .qrimg { width: 220px; height: 220px; object-fit: contain; image-rendering: pixelated; background: #ffffff; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,.1); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+    .qr-note { color: var(--muted); font-size:12px; line-height:1.5; max-width: 420px; }
+
+    @media (max-width: 900px) {
+      .nowrap { white-space: normal; }
+      .wrap { padding: 18px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .qrimg { width: 180px; height: 180px; }
+      .portrait, .avatar { width: 96px; height: 96px; }
+    }
+
     footer { color: var(--muted); font-size: 13px; margin: 22px 0 10px; text-align: center; }
     .small { font-size: 12px; }
     .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 2px 6px; border-radius: 6px; }
-
-    @media (max-width: 900px) { .nowrap { white-space: normal; } .wrap { padding: 18px; } }
   </style>
 </head>
 <body>
@@ -76,27 +123,23 @@
 
     <section class="hero">
       <div>
-        <h1 class="gradient nowrap">Hip‑Hop / Choreo Workshop</h1>
-        <p class="lead">Join us for a high‑energy session. All levels welcome. Limited spots — register below! 🚀</p>
+        <h1 class="gradient nowrap">Hip-Hop / Choreo Workshop</h1>
+        <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! 🚀</p>
         <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p>
 
         <div class="details">
-          <!-- Date/time -->
           <div class="card">
             <div class="chip">📅 <strong id="ws-date">October 26, Sunday<br>16:00 – 18:00</strong></div>
             <p class="muted small">Mark your calendar for the workshop date and time.</p>
           </div>
-          <!-- Location -->
           <div class="card">
             <div class="chip">📍 <strong id="ws-location">Klosterstraße 44<br>10179 Berlin</strong></div>
             <p class="muted small">This is the exact studio address for the workshop.</p>
           </div>
-          <!-- Price -->
           <div class="card">
             <div class="chip">💶 <strong id="ws-price">Price: €10</strong></div>
             <p class="muted small">Pay via Revolut or PayPal (details below).</p>
           </div>
-          <!-- What you'll learn -->
           <div class="card learn">
             <h3>🎯 What You’ll Learn</h3>
             <ul>
@@ -113,27 +156,77 @@
       </div>
     </section>
 
+    <!-- ABOUT US -->
+    <section class="about">
+      <h2>About Us</h2>
+      <div class="about-grid">
+        <!-- Gela -->
+        <div class="card about-card">
+          <div class="photo">
+            <img class="portrait" src="media/gela.jpg" alt="Gela portrait"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar">G</div>
+          </div>
+          <div class="bio">
+            <h3>Gela</h3>
+            <p>I dance because it makes me feel alive—the rhythm, energy and expression became my language. My foundation is Hip-Hop, and I blend street, commercial and freestyle elements to create movement that’s authentic and powerful.</p>
+            <p>Classes with me focus on musicality, foundation and confidence. I want you to leave stronger and more connected to the music than when you walked in.</p>
+            <p>My teaching philosophy: it’s not just about steps—it’s about how you feel doing them. I’m here to push limits, build community and hold space for real self-expression.</p>
+            <div class="links"><a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">Follow @gela.flow</a></div>
+          </div>
+        </div>
+
+        <!-- Prince -->
+        <div class="card about-card">
+          <div class="photo">
+            <img class="portrait" src="media/prince.jpg" alt="Prince portrait"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar">P</div>
+          </div>
+          <div class="bio">
+            <h3>Prince</h3>
+            <p>Hip-Hop is my base—raw, groovy and expressive—and I love fusing in street, commercial and freestyle textures. What started as a hobby became a lifestyle and a way to inspire others through movement.</p>
+            <p>In class you’ll find energy and clarity: grooves, textures, stage presence and clean choreography drills that build both skill and confidence.</p>
+            <p>My approach: progress over perfection. Keep showing up, stay consistent, and use every rep to grow. Community first, passion always.</p>
+            <div class="links"><a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">Follow @_prince_.chauhan</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /ABOUT US -->
+
     <div class="grid">
       <section id="register" class="card">
         <h2 class="section-title">Registration <span class="open-badge">Open</span></h2>
         <p class="muted">To confirm your spot, please send <strong>€10</strong> using one of the methods below, then submit the form. Questions? DM us on Instagram: <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> or <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a>.</p>
 
         <div class="paygrid">
+          <!-- Revolut -->
           <div class="subcard">
             <h3>Pay via Revolut</h3>
-            <p class="muted">Send <strong>€10</strong> to handle <span class="codebox" id="revTag">@angelibrxy</span> and add note: <em>“Your Name – Oct 26 Dance”</em>.</p>
-            <p>
-              <a class="paybtn" href="https://revolut.me/angelibrxy" target="_blank" rel="noopener noreferrer">Open Revolut</a>
-              <button class="copybtn" data-copy="@angelibrxy">Copy handle</button>
+            <p class="muted">Send <strong>€10</strong> to handle
+              <span class="codebox" id="revTag">@angelibrxy</span>
+              and add note: <em>“Your Name – Oct 26 Dance”</em>.
             </p>
+            <p><button class="copybtn" data-copy="@angelibrxy">Copy handle</button></p>
+            <div class="qrwrap">
+              <img class="qrimg" src="media/revolut-qr.png" alt="Revolut QR code" onerror="this.closest('.qrwrap').style.display='none'">
+              <div class="qr-note">Scan the QR in the Revolut app and send €10. Please include your name in the note.</div>
+            </div>
           </div>
+
+          <!-- PayPal -->
           <div class="subcard">
             <h3>Pay via PayPal</h3>
-            <p class="muted">Send <strong>€10</strong> to <span class="codebox" id="ppEmail">app@tradenexs.com</span>. Include note: <em>“Your Name – Oct 26 Dance”</em>.</p>
-            <p>
-              <a class="paybtn" href="https://www.paypal.com/myaccount/transfer/homepage/pay" target="_blank" rel="noopener noreferrer">Open PayPal</a>
-              <button class="copybtn" data-copy="app@tradenexs.com">Copy email</button>
+            <p class="muted">Send <strong>€10</strong> to
+              <span class="codebox" id="ppEmail">app@tradenexs.com</span>.
+              Include note: <em>“Your Name – Oct 26 Dance”</em>.
             </p>
+            <p><button class="copybtn" data-copy="app@tradenexs.com">Copy email</button></p>
+            <div class="qrwrap">
+              <img class="qrimg" src="media/paypal-qr.png" alt="PayPal QR code" onerror="this.closest('.qrwrap').style.display='none'">
+              <div class="qr-note">Scan the QR to open PayPal and pay €10. Make sure the recipient is <strong>app@tradenexs.com</strong>.</div>
+            </div>
           </div>
         </div>
 
@@ -152,7 +245,7 @@
       </details>
       <details>
         <summary><strong>Which Room?</strong></summary>
-        <p class="muted">It will be either 2nd or 5th Floor — DM for more info.</p>
+        <p class="muted">It will be either 3rd or 5th Floor — DM for more info.</p>
       </details>
     </section>
 
@@ -162,6 +255,7 @@
   </div>
 
   <script>
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // copy-to-clipboard for payment fields
