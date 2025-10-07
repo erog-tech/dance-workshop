@@ -57,7 +57,7 @@
     .portrait {
       width: 120px;
       height: 120px;
-      border-radius: 50%;       /* keep circular; change to 16px for rounded-square */
+      border-radius: 50%;
       object-fit: cover;
       border: 2px solid transparent;
       background:
@@ -66,23 +66,37 @@
       box-shadow: 0 10px 20px rgba(0,0,0,.35);
       display: block;
     }
-
     .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      width: 120px; height: 120px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, var(--brand), var(--brand-2));
       box-shadow: 0 10px 20px rgba(0,0,0,.35);
-      display: none; /* shown only if image fails to load */
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: #0b1026;
-      letter-spacing: .5px;
+      display: none; align-items: center; justify-content: center;
+      font-weight: 800; color: #0b1026; letter-spacing: .5px;
     }
     .bio h3 { margin: 0 0 6px; font-size: 18px; }
     .bio p { margin: 0 0 10px; color: var(--muted); line-height: 1.7; }
     .bio .links a { font-weight: 700; }
+
+    /* LAST WORKSHOP LINKS */
+    .recap { margin: 18px 0 32px; } /* added bottom spacing */
+    .recap h2 { margin: 0 0 10px; font-size: 24px; }
+    .recap-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+    .linkcard {
+      display:block; padding:16px; border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .linkcard:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(0,0,0,.35); text-decoration:none; border-color: rgba(255,255,255,.18); }
+    .linkrow { display:flex; align-items:center; gap:12px; }
+    .ig-badge {
+      width: 36px; height: 36px; border-radius: 10px; flex:0 0 auto;
+      background: conic-gradient(#feda75, #d62976, #962fbf, #4f5bd5, #feda75);
+      display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800;
+      box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    }
+    .linktitle { margin:0; font-weight:800; font-size:16px; }
+    .linkdesc  { margin:4px 0 0; color: var(--muted); font-size:14px; }
 
     /* Register section full-width */
     .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -117,7 +131,7 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="brand"><div class="logo"></div> <span>Dance Workshop</span></div>
+      <div class="brand"><div class="logo"></div> <span>Dance Workshop by Gela & Prince ✨</span></div>
       <nav></nav>
     </header>
 
@@ -125,7 +139,7 @@
       <div>
         <h1 class="gradient nowrap">Hip-Hop / Choreo Workshop</h1>
         <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! 🚀</p>
-        <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p>
+        <!-- <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p> -->
 
         <div class="details">
           <div class="card">
@@ -195,6 +209,23 @@
     </section>
     <!-- /ABOUT US -->
 
+    <!-- LAST WORKSHOP LINKS -->
+    <section class="recap">
+      <h2>Last Workshop</h2>
+      <div class="recap-grid">
+        <a class="linkcard" href="https://www.instagram.com/reel/DPLlrKIDSPQ/?igsh=MXA2YzgzcHhsa2pmeA==" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram reel from last workshop">
+          <div class="linkrow">
+            <div class="ig-badge">IG</div>
+            <div>
+              <p class="linktitle">Highlights Reel</p>
+              <p class="linkdesc">Watch clips from our previous session on Instagram.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+    <!-- /LAST WORKSHOP LINKS -->
+
     <div class="grid">
       <section id="register" class="card">
         <h2 class="section-title">Registration <span class="open-badge">Open</span></h2>
@@ -255,7 +286,6 @@
   </div>
 
   <script>
-    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // copy-to-clipboard for payment fields
