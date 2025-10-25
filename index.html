@@ -78,7 +78,7 @@
     .bio .links a { font-weight: 700; }
 
     /* LAST WORKSHOP LINKS */
-    .recap { margin: 18px 0 32px; } /* added bottom spacing */
+    .recap { margin: 18px 0 32px; }
     .recap h2 { margin: 0 0 10px; font-size: 24px; }
     .recap-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
     .linkcard {
@@ -126,9 +126,111 @@
     footer { color: var(--muted); font-size: 13px; margin: 22px 0 10px; text-align: center; }
     .small { font-size: 12px; }
     .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 2px 6px; border-radius: 6px; }
+
+    /* === HALLOWEEN ADDITIONS (only added, nothing changed) === */
+    .bg-ghosts { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-ghosts .gh { position: absolute; left: -12vw; top: var(--top, 10%); font-size: var(--size, 48px); opacity: .22; text-shadow: 0 6px 14px rgba(0,0,0,.45); animation: drift var(--dur, 26s) linear infinite; animation-delay: var(--delay, 0s); }
+    .bg-ghosts .gh > span { display: block; animation: bob var(--bob, 6s) ease-in-out infinite; animation-delay: calc(var(--delay, 0s) / 2); }
+    @keyframes drift { from { transform: translateX(-10vw); } to { transform: translateX(120vw); } }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @media (prefers-reduced-motion: reduce) { .bg-ghosts .gh, .bg-ghosts .gh > span { animation: none !important; } }
+    
+    /* === ADD: Flying candles & pumpkins (no changes to ghost code) === */
+@keyframes flyDecor {
+  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+  25%  { transform: translateX(35vw) translateY(-6px) rotate(1deg); }
+  50%  { transform: translateX(70vw) translateY(0) rotate(0deg); }
+  75%  { transform: translateX(95vw) translateY(-6px) rotate(-1deg); }
+  100% { transform: translateX(120vw) translateY(0) rotate(0deg); }
+}
+@keyframes flyDecorR {
+  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+  25%  { transform: translateX(-35vw) translateY(-6px) rotate(-1deg); }
+  50%  { transform: translateX(-70vw) translateY(0) rotate(0deg); }
+  75%  { transform: translateX(-95vw) translateY(-6px) rotate(1deg); }
+  100% { transform: translateX(-120vw) translateY(0) rotate(0deg); }
+}
+@keyframes glowOnly {
+  0%   { filter: drop-shadow(0 0 6px rgba(255,210,120,.35)); }
+  50%  { filter: drop-shadow(0 0 18px rgba(255,200,90,.85)); }
+  100% { filter: drop-shadow(0 0 6px rgba(255,210,120,.35)); }
+}
+
+/* Make ALL .decor items fly; keep them behind content interactions */
+.decor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  left: -12vw !important;         /* start off-screen on the left */
+  right: auto !important;
+  top: var(--top, auto);
+  bottom: var(--bottom, 14px);
+  font-size: var(--size, 42px);
+  /* Composite animation: subtle glow + horizontal travel with gentle bob/tilt baked in */
+  animation: glowOnly var(--glow, 2.6s) ease-in-out infinite,
+             flyDecor var(--dur, 46s) linear infinite !important;
+  animation-delay: var(--gdelay, 0s), var(--delay, 0s);
+}
+
+/* Right-to-left variants */
+.decor.rtl {
+  left: auto !important;
+  right: -12vw !important;         /* start off-screen on the right */
+  animation: glowOnly var(--glow, 2.6s) ease-in-out infinite,
+             flyDecorR var(--dur, 46s) linear infinite !important;
+}
+
+/* Optional: make pumpkins a bit larger by default */
+.decor.pumpkin { --size: 56px; }
+
+/* Respect Reduce Motion but still allow slow drift if desired */
+@media (prefers-reduced-motion: reduce) {
+  .decor, .decor.rtl {
+    animation: glowOnly 3s ease-in-out infinite,
+               flyDecor 60s linear infinite !important;
+  }
+}
+
   </style>
 </head>
 <body>
+
+  <!-- === HALLOWEEN DECORATIONS (only added) === -->
+  <div class="bg-ghosts" aria-hidden="true">
+    <span class="gh g1" style="--top:6%;  --size:56px; --dur:28s; --delay:-3s; --bob:5s"><span>👻</span></span>
+    <span class="gh g2" style="--top:18%; --size:44px; --dur:34s; --delay:-8s; --bob:7s"><span>👻</span></span>
+    <span class="gh g3" style="--top:30%; --size:62px; --dur:30s; --delay:-1s; --bob:6s"><span>👻</span></span>
+    <span class="gh g4" style="--top:42%; --size:38px; --dur:25s; --delay:-12s; --bob:5.5s"><span>👻</span></span>
+    <span class="gh g5" style="--top:54%; --size:52px; --dur:32s; --delay:-6s; --bob:7.5s"><span>👻</span></span>
+    <span class="gh g6" style="--top:66%; --size:40px; --dur:29s; --delay:-10s; --bob:6.5s"><span>👻</span></span>
+    <span class="gh g7" style="--top:78%; --size:58px; --dur:33s; --delay:-4s; --bob:6.2s"><span>👻</span></span>
+    <span class="gh g8" style="--top:88%; --size:42px; --dur:27s; --delay:-14s; --bob:5.8s"><span>👻</span></span>
+  </div>
+
+  <!-- Candles & pumpkin -->
+  <div class="decor decor-left" aria-hidden="true">🕯️</div>
+  <div class="decor decor-right" aria-hidden="true">🕯️</div>
+  <div class="decor decor-pumpkin" aria-hidden="true">🎃</div>
+  <!-- extra flying candles & pumpkins (only added) -->
+<!-- Candles (L→R) -->
+<div class="decor" aria-hidden="true" style="--top:12%; --dur:38s; --glow:2.2s; --delay:-5s; --size:42px;">🕯️</div>
+<div class="decor" aria-hidden="true" style="--top:28%; --dur:52s; --glow:2.9s; --delay:-11s; --size:48px;">🕯️</div>
+<div class="decor" aria-hidden="true" style="--top:64%; --dur:44s; --glow:2.5s; --delay:-20s; --size:40px;">🕯️</div>
+
+<!-- Candles (R→L) -->
+<div class="decor rtl" aria-hidden="true" style="--top:20%; --dur:48s; --glow:2.7s; --delay:-7s; --size:46px;">🕯️</div>
+<div class="decor rtl" aria-hidden="true" style="--top:76%; --dur:36s; --glow:2.3s; --delay:-13s; --size:44px;">🕯️</div>
+
+<!-- Pumpkins (L→R) -->
+<div class="decor pumpkin" aria-hidden="true" style="--top:40%; --dur:50s; --glow:2.4s; --delay:-9s; --size:60px;">🎃</div>
+<div class="decor pumpkin" aria-hidden="true" style="--top:84%; --dur:42s; --glow:2.8s; --delay:-3s; --size:58px;">🎃</div>
+
+<!-- Pumpkins (R→L) -->
+<div class="decor pumpkin rtl" aria-hidden="true" style="--top:8%;  --dur:46s; --glow:2.6s; --delay:-15s; --size:62px;">🎃</div>
+<div class="decor pumpkin rtl" aria-hidden="true" style="--top:56%; --dur:54s; --glow:3.0s; --delay:-24s; --size:64px;">🎃</div>
+
+  <!-- === /HALLOWEEN DECORATIONS === -->
+
   <div class="wrap">
     <header>
       <div class="brand"><div class="logo"></div> <span>Dance Workshop by Gela & Prince ✨</span></div>
@@ -137,10 +239,18 @@
 
     <section class="hero">
       <div>
-        <h1 class="gradient nowrap">Hip-Hop / Choreo Workshop</h1>
-        <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! 🚀</p>
+        <h1 class="gradient nowrap">🎃 Hip-Hop / Choreo Workshop 👻🦇</h1>
+        <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! 🎃👻🕸️</p>
         <!-- <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p> -->
-
+        <!-- PROMO / GIVEAWAY SECTION -->
+    <section class="card" style="margin-top:16px" aria-label="Halloween giveaway">
+      <h2>🎁 Chance to Win! </h2>
+      <ol style="margin: 0; padding-left: 18px; line-height: 1.6; color: var(--muted);">
+      <li>Sign up for the Oct 26th workshop</li>
+      <li>Add this to your Story and tag <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> &amp; <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a></li>
+      </ol>
+      <p class="muted">Every paid registration enters a raffle to win <strong>5 FREE workshops</strong> or a <strong>€20 gift voucher</strong>. Winners announced at the end of class on Oct 26. 🍀🎃</p>
+    </section>
         <div class="details">
           <div class="card">
             <div class="chip">📅 <strong id="ws-date">October 26, Sunday<br>16:00 – 18:00</strong></div>
