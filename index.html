@@ -77,26 +77,58 @@
     .bio p { margin: 0 0 10px; color: var(--muted); line-height: 1.7; }
     .bio .links a { font-weight: 700; }
 
-    /* LAST WORKSHOP LINKS */
-    .recap { margin: 18px 0 32px; }
+    /* LAST WORKSHOP – photo tiles */
+    .recap { margin: 18px 0 32px; }           /* adds spacing below the section */
     .recap h2 { margin: 0 0 10px; font-size: 24px; }
-    .recap-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
-    .linkcard {
-      display:block; padding:16px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
+
+    .gallery { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 16px; 
+      margin-top: 12px; 
+    }
+
+    .tile {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
-    .linkcard:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(0,0,0,.35); text-decoration:none; border-color: rgba(255,255,255,.18); }
-    .linkrow { display:flex; align-items:center; gap:12px; }
-    .ig-badge {
-      width: 36px; height: 36px; border-radius: 10px; flex:0 0 auto;
+
+    .tile img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: transform .25s ease, filter .25s ease;
+    }
+
+    .tile:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 12px 22px rgba(0,0,0,.35); 
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .tile:hover img { transform: scale(1.03); filter: brightness(1.05); }
+
+    .badge-ig {
+      position: absolute; top: 10px; left: 10px;
+      width: 36px; height: 36px; border-radius: 10px;
       background: conic-gradient(#feda75, #d62976, #962fbf, #4f5bd5, #feda75);
-      display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800;
-      box-shadow: 0 6px 16px rgba(0,0,0,.35);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800;
+      box-shadow: 0 8px 16px rgba(0,0,0,.35);
     }
-    .linktitle { margin:0; font-weight:800; font-size:16px; }
-    .linkdesc  { margin:4px 0 0; color: var(--muted); font-size:14px; }
+
+    .tile .label {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.7));
+      font-weight: 800;
+    }
 
     /* Register section full-width */
     .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -204,7 +236,7 @@
 
     <section class="hero">
       <div>
-        <h1 class="gradient nowrap"> Hip-Hop / Choreo Workshop</h1>
+        <h1 class="gradient nowrap"> Hip-Hop / Choreo Workshop 3rd Edition</h1>
         <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! </p>
         <!-- <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p> -->
         <!-- PROMO / GIVEAWAY SECTION -->
@@ -218,7 +250,7 @@
     </section> -->
         <div class="details">
           <div class="card">
-            <div class="chip">📅 <strong id="ws-date">October 26, Sunday<br>16:00 – 18:00</strong></div>
+            <div class="chip">📅 <strong id="ws-date">November 23, Sunday<br>14:00 – 16:00</strong></div>
             <p class="muted small">Mark your calendar for the workshop date and time.</p>
           </div>
           <div class="card">
@@ -226,7 +258,7 @@
             <p class="muted small">This is the exact studio address for the workshop.</p>
           </div>
           <div class="card">
-            <div class="chip">💶 <strong id="ws-price">Price: Only €10</strong></div>
+            <div class="chip">💶 <strong id="ws-price">Price: Only €5</strong></div>
             <p class="muted small">Pay via Revolut or PayPal (details below).</p>
           </div>
           <div class="card learn">
@@ -289,16 +321,32 @@
 
     <!-- LAST WORKSHOP LINKS -->
     <section class="recap">
-      <h2>Last Workshop</h2>
-      <div class="recap-grid">
-        <a class="linkcard" href="https://www.instagram.com/reel/DPLlrKIDSPQ/?igsh=MXA2YzgzcHhsa2pmeA==" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram reel from last workshop">
-          <div class="linkrow">
-            <div class="ig-badge">IG</div>
-            <div>
-              <p class="linktitle">Highlights Reel</p>
-              <p class="linkdesc">Watch clips from our previous session on Instagram.</p>
-            </div>
-          </div>
+      <h2>Last Workshops</h2>
+
+      <!-- Photo tiles that link to Instagram reels -->
+      <div class="gallery">
+        <!-- Tile 1 -->
+        <a class="tile"
+          href="https://www.instagram.com/reel/DQSZC_wjTKV/?igsh=bXRkemt2cDZubjdh"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Open Instagram highlights reel 1">
+          <span class="badge-ig">IG</span>
+          <!-- Put your first thumbnail image in media/recap-1.jpg -->
+          <img src="media/recap-1.png" alt="Highlights Reel 1 thumbnail"
+              onerror="this.src='media/placeholder.jpg'">
+          <span class="label">Highlights Reel</span>
+        </a>
+
+        <!-- Tile 2 -->
+        <a class="tile"
+          href="https://www.instagram.com/reel/DPLlrKIDSPQ/?igsh=MXA2YzgzcHhsa2pmeA=="
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Open Instagram highlights reel 2">
+          <span class="badge-ig">IG</span>
+          <!-- Put your second thumbnail image in media/recap-2.jpg -->
+          <img src="media/recap-2.png" alt="Highlights Reel 2 thumbnail"
+              onerror="this.src='media/placeholder.jpg'">
+          <span class="label">Behind the Scenes</span>
         </a>
       </div>
     </section>
@@ -307,43 +355,43 @@
     <div class="grid">
       <section id="register" class="card">
         <h2 class="section-title">Registration <span class="open-badge">Open</span></h2>
-        <p class="muted">To confirm your spot, please send <strong>€10</strong> using one of the methods below, then submit the form. Questions? DM us on Instagram: <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> or <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a>.</p>
+        <p class="muted">To confirm your spot, please send <strong>€5</strong> using one of the methods below, then submit the form. Questions? DM us on Instagram: <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> or <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a>.</p>
 
         <div class="paygrid">
           <!-- Revolut -->
           <div class="subcard">
             <h3>Pay via Revolut</h3>
-            <p class="muted">Send <strong>€10</strong> to handle
+            <p class="muted">Send <strong>€5</strong> to handle
               <span class="codebox" id="revTag">@angelibrxy</span>
-              and add note: <em>“Your Name – Oct 26 Dance”</em>.
+              and add note: <em>“Your Name – Nov 23 Dance”</em>.
             </p>
             <p><button class="copybtn" data-copy="@angelibrxy">Copy handle</button></p>
             <div class="qrwrap">
               <img class="qrimg" src="media/revolut-qr.png" alt="Revolut QR code" onerror="this.closest('.qrwrap').style.display='none'">
-              <div class="qr-note">Scan the QR in the Revolut app and send €10. Please include your name in the note.</div>
+              <div class="qr-note">Scan the QR in the Revolut app and send €5. Please include your name in the note.</div>
             </div>
           </div>
 
           <!-- PayPal -->
           <div class="subcard">
             <h3>Pay via PayPal</h3>
-            <p class="muted">Send <strong>€10</strong> to
+            <p class="muted">Send <strong>€5</strong> to
               <span class="codebox" id="ppEmail">app@tradenexs.com</span>.
-              Include note: <em>“Your Name – Oct 26 Dance”</em>.
+              Include note: <em>“Your Name – Nov 23 Dance”</em>.
             </p>
             <p><button class="copybtn" data-copy="app@tradenexs.com">Copy email</button></p>
             <div class="qrwrap">
               <img class="qrimg" src="media/paypal-qr.png" alt="PayPal QR code" onerror="this.closest('.qrwrap').style.display='none'">
-              <div class="qr-note">Scan the QR to open PayPal and pay €10. Make sure the recipient is <strong>app@tradenexs.com</strong>.</div>
+              <div class="qr-note">Scan the QR to open PayPal and pay €5. Make sure the recipient is <strong>app@tradenexs.com</strong>.</div>
             </div>
           </div>
         </div>
 
         <p class="muted small">After payment, complete the registration form below. If your form includes a question like <em>“Have you paid?”</em>, selecting <strong>Yes</strong> will trigger a confirmation email.</p>
 
-        <!-- <iframe id="formFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfq4wCotT0gIrXr0PaApdAfvav6190pCPXYg-DXxy0A1-Nhcw/viewform?embedded=true" allow="clipboard-write;"></iframe>
+        <iframe id="formFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfq4wCotT0gIrXr0PaApdAfvav6190pCPXYg-DXxy0A1-Nhcw/viewform?embedded=true" allow="clipboard-write;"></iframe>
         <p class="admin-note">If the form doesn’t appear, <a id="formLink" href="https://forms.gle/9rZ6zDjDvxBtMFMh7" target="_blank" rel="noreferrer noopener">open it in a new tab</a>.</p>
-      </section> -->
+      </section>
     </div>
 
     <section class="card" style="margin-top:24px">
