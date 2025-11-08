@@ -80,14 +80,12 @@
     /* LAST WORKSHOP – photo tiles */
     .recap { margin: 18px 0 32px; }           /* adds spacing below the section */
     .recap h2 { margin: 0 0 10px; font-size: 24px; }
-
     .gallery { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
       gap: 16px; 
       margin-top: 12px; 
     }
-
     .tile {
       position: relative;
       border-radius: 16px;
@@ -96,7 +94,6 @@
       background: rgba(255,255,255,.03);
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
-
     .tile img {
       width: 100%;
       height: 100%;
@@ -105,15 +102,12 @@
       object-fit: cover;
       transition: transform .25s ease, filter .25s ease;
     }
-
     .tile:hover { 
       transform: translateY(-2px); 
       box-shadow: 0 12px 22px rgba(0,0,0,.35); 
       border-color: rgba(255,255,255,.18);
     }
-
     .tile:hover img { transform: scale(1.03); filter: brightness(1.05); }
-
     .badge-ig {
       position: absolute; top: 10px; left: 10px;
       width: 36px; height: 36px; border-radius: 10px;
@@ -122,13 +116,51 @@
       color: #fff; font-weight: 800;
       box-shadow: 0 8px 16px rgba(0,0,0,.35);
     }
-
     .tile .label {
       position: absolute; left: 0; right: 0; bottom: 0;
       padding: 10px 12px;
       background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.7));
       font-weight: 800;
     }
+
+    /* WHATSAPP GROUP (new) */
+    .whatsapp { margin: 18px 0 32px; }
+    .whatsapp h2 { margin: 0 0 10px; font-size: 24px; }
+    .wh-cta {
+      display: flex; gap: 16px; align-items: center;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px; padding: 16px;
+    }
+    .wh-copy { flex: 1; }
+    .wh-copy p { margin: 6px 0 0; color: var(--muted); }
+    .badge-wa {
+      width: 120px; height: 40px; border-radius: 12px; flex:0 0 auto;
+      background: radial-gradient(circle at 30% 30%, #25D366, #128C7E);
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; font-weight:800; box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    }
+
+    /* Make ONLY the WhatsApp QR bigger (desktop) */
+    .whatsapp .qrimg {
+      width: 520px;
+      height: 520px;
+    }
+
+    @media (max-width: 900px) {
+      .nowrap { white-space: normal; }
+      .wrap { padding: 18px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .portrait, .avatar { width: 96px; height: 96px; }
+      .wh-cta { flex-direction: column; align-items: flex-start; }
+
+      /* Keep WhatsApp QR larger on mobile too */
+      .whatsapp .qrimg {
+        width: 360px;
+        height: 360px;
+      }
+    }
+
 
     /* Register section full-width */
     .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -147,86 +179,20 @@
     .qrimg { width: 220px; height: 220px; object-fit: contain; image-rendering: pixelated; background: #ffffff; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,.1); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
     .qr-note { color: var(--muted); font-size:12px; line-height:1.5; max-width: 420px; }
 
-    @media (max-width: 900px) {
-      .nowrap { white-space: normal; }
-      .wrap { padding: 18px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .qrimg { width: 180px; height: 180px; }
-      .portrait, .avatar { width: 96px; height: 96px; }
-    }
-
     footer { color: var(--muted); font-size: 13px; margin: 22px 0 10px; text-align: center; }
     .small { font-size: 12px; }
     .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 2px 6px; border-radius: 6px; }
 
-    /* === HALLOWEEN ADDITIONS (only added, nothing changed) === */
+    /* === HALLOWEEN ADDITIONS (unchanged) === */
     .bg-ghosts { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .bg-ghosts .gh { position: absolute; left: -12vw; top: var(--top, 10%); font-size: var(--size, 48px); opacity: .22; text-shadow: 0 6px 14px rgba(0,0,0,.45); animation: drift var(--dur, 26s) linear infinite; animation-delay: var(--delay, 0s); }
     .bg-ghosts .gh > span { display: block; animation: bob var(--bob, 6s) ease-in-out infinite; animation-delay: calc(var(--delay, 0s) / 2); }
     @keyframes drift { from { transform: translateX(-10vw); } to { transform: translateX(120vw); } }
     @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @media (prefers-reduced-motion: reduce) { .bg-ghosts .gh, .bg-ghosts .gh > span { animation: none !important; } }
-    
-    /* === ADD: Flying candles & pumpkins (no changes to ghost code) === */
-@keyframes flyDecor {
-  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
-  25%  { transform: translateX(35vw) translateY(-6px) rotate(1deg); }
-  50%  { transform: translateX(70vw) translateY(0) rotate(0deg); }
-  75%  { transform: translateX(95vw) translateY(-6px) rotate(-1deg); }
-  100% { transform: translateX(120vw) translateY(0) rotate(0deg); }
-}
-@keyframes flyDecorR {
-  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
-  25%  { transform: translateX(-35vw) translateY(-6px) rotate(-1deg); }
-  50%  { transform: translateX(-70vw) translateY(0) rotate(0deg); }
-  75%  { transform: translateX(-95vw) translateY(-6px) rotate(1deg); }
-  100% { transform: translateX(-120vw) translateY(0) rotate(0deg); }
-}
-@keyframes glowOnly {
-  0%   { filter: drop-shadow(0 0 6px rgba(255,210,120,.35)); }
-  50%  { filter: drop-shadow(0 0 18px rgba(255,200,90,.85)); }
-  100% { filter: drop-shadow(0 0 6px rgba(255,210,120,.35)); }
-}
-
-/* Make ALL .decor items fly; keep them behind content interactions */
-.decor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1;
-  left: -12vw !important;         /* start off-screen on the left */
-  right: auto !important;
-  top: var(--top, auto);
-  bottom: var(--bottom, 14px);
-  font-size: var(--size, 42px);
-  /* Composite animation: subtle glow + horizontal travel with gentle bob/tilt baked in */
-  animation: glowOnly var(--glow, 2.6s) ease-in-out infinite,
-             flyDecor var(--dur, 46s) linear infinite !important;
-  animation-delay: var(--gdelay, 0s), var(--delay, 0s);
-}
-
-/* Right-to-left variants */
-.decor.rtl {
-  left: auto !important;
-  right: -12vw !important;         /* start off-screen on the right */
-  animation: glowOnly var(--glow, 2.6s) ease-in-out infinite,
-             flyDecorR var(--dur, 46s) linear infinite !important;
-}
-
-/* Optional: make pumpkins a bit larger by default */
-.decor.pumpkin { --size: 56px; }
-
-/* Respect Reduce Motion but still allow slow drift if desired */
-@media (prefers-reduced-motion: reduce) {
-  .decor, .decor.rtl {
-    animation: glowOnly 3s ease-in-out infinite,
-               flyDecor 60s linear infinite !important;
-  }
-}
-
   </style>
 </head>
 <body>
-
 
   <div class="wrap">
     <header>
@@ -238,16 +204,7 @@
       <div>
         <h1 class="gradient nowrap"> Hip-Hop / Choreo Workshop 3rd Edition</h1>
         <p class="lead">Join us for a high-energy session. All levels welcome. Limited spots — register below! </p>
-        <!-- <p class="byline">by <strong>Gela</strong> &amp; <strong>Prince</strong> ✨</p> -->
-        <!-- PROMO / GIVEAWAY SECTION -->
-    <!-- <section class="card" style="margin-top:16px" aria-label="Halloween giveaway">
-      <h2>🎁 Chance to Win! </h2>
-      <ol style="margin: 0; padding-left: 18px; line-height: 1.6; color: var(--muted);">
-      <li>Sign up for the Oct 26th workshop</li>
-      <li>Add this to your Story and tag <a href="https://instagram.com/gela.flow" target="_blank" rel="noopener noreferrer">@gela.flow</a> &amp; <a href="https://instagram.com/_prince_.chauhan" target="_blank" rel="noopener noreferrer">@_prince_.chauhan</a></li>
-      </ol>
-      <p class="muted">Every paid registration enters a raffle to win <strong>5 FREE workshops</strong> or a <strong>€20 gift voucher</strong>. Winners announced at the end of class on Oct 26. 🍀🎃</p>
-    </section> -->
+
         <div class="details">
           <div class="card">
             <div class="chip">📅 <strong id="ws-date">November 23, Sunday<br>14:00 – 16:00</strong></div>
@@ -323,7 +280,6 @@
     <section class="recap">
       <h2>Last Workshops</h2>
 
-      <!-- Photo tiles that link to Instagram reels -->
       <div class="gallery">
         <!-- Tile 1 -->
         <a class="tile"
@@ -331,7 +287,6 @@
           target="_blank" rel="noopener noreferrer"
           aria-label="Open Instagram highlights reel 1">
           <span class="badge-ig">IG</span>
-          <!-- Put your first thumbnail image in media/recap-1.jpg -->
           <img src="media/recap-1.png" alt="Highlights Reel 1 thumbnail"
               onerror="this.src='media/placeholder.jpg'">
           <span class="label">Highlights Reel</span>
@@ -343,7 +298,6 @@
           target="_blank" rel="noopener noreferrer"
           aria-label="Open Instagram highlights reel 2">
           <span class="badge-ig">IG</span>
-          <!-- Put your second thumbnail image in media/recap-2.jpg -->
           <img src="media/recap-2.png" alt="Highlights Reel 2 thumbnail"
               onerror="this.src='media/placeholder.jpg'">
           <span class="label">Behind the Scenes</span>
@@ -351,6 +305,25 @@
       </div>
     </section>
     <!-- /LAST WORKSHOP LINKS -->
+
+    <!-- WHATSAPP GROUP (new) -->
+    <section class="whatsapp">
+      <h2>Join the WhatsApp Group 💬✨🤝</h2>
+      <div class="wh-cta">
+        <img class="qrimg" src="media/whatsapp-qr.png" alt="WhatsApp group QR code"
+             onerror="this.style.display='none'">
+        <div class="wh-copy">
+          <!-- <div class="badge-wa">WhatsApp</div> -->
+          <p>Get the latest updates, class drops, collabs and reels first. Scan the QR to join our WhatsApp community. 🔔🔥</p>
+          <!-- Optional direct link button (add your invite URL and un-comment)
+          <p style="margin-top:10px">
+            <a class="paybtn" href="https://chat.whatsapp.com/YOUR_INVITE_LINK" target="_blank" rel="noopener noreferrer">Join on WhatsApp</a>
+          </p>
+          -->
+        </div>
+      </div>
+    </section>
+    <!-- /WHATSAPP GROUP -->
 
     <div class="grid">
       <section id="register" class="card">
